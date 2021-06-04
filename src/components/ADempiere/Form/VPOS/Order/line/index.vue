@@ -31,6 +31,7 @@
               :ref="field.columnName"
               :metadata-field="{
                 ...field,
+                labelCurrency: currencyPointOfSales,
                 isReadOnly: !isModifyPrice
               }"
             />
@@ -156,6 +157,12 @@ export default {
     },
     validatePin() {
       return this.$store.state['pointOfSales/orderLine/index'].validatePin
+    },
+    currencyPointOfSales() {
+      if (!this.isEmptyValue(this.currentPointOfSales)) {
+        return this.currentPointOfSales.priceList.currency
+      }
+      return {}
     }
   },
   watch: {
